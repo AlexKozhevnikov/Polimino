@@ -3,6 +3,7 @@ package com.alexeus;
 public class Main {
 
     public static void main(String[] args) {
-	    System.out.println("Понеслася");
+	    Classifier classifier = new Classifier();
+        classifier.say();
     }
 }

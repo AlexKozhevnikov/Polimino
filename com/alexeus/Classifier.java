@@ -6,4 +6,11 @@ package com.alexeus;
  */
 public class Classifier {
 
+    Classifier() {
+
+    }
+
+    public void say() {
+        System.out.println("Понеслася");
+    }
 }
