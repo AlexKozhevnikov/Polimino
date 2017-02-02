@@ -1,5 +1,9 @@
 package com.alexeus.polyominoes.graph;
 
+import com.alexeus.polyominoes.control.GameController;
+import com.alexeus.polyominoes.control.Settings;
+import com.alexeus.polyominoes.control.enums.PlayRegimeType;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -87,8 +91,9 @@ public class MainPanel extends JPanel {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                synchronized (Controller.getControllerMonitor()) {
-                    Controller.getControllerMonitor().notify();
+                Settings.getInstance().setPlayRegime(PlayRegimeType.none);
+                synchronized (GameController.getControllerMonitor()) {
+                    GameController.getControllerMonitor().notify();
                 }
             }
         });
@@ -99,8 +104,8 @@ public class MainPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Settings.getInstance().setPlayRegime(PlayRegimeType.playEnd);
-                synchronized (Controller.getControllerMonitor()) {
-                    Controller.getControllerMonitor().notify();
+                synchronized (GameController.getControllerMonitor()) {
+                    GameController.getControllerMonitor().notify();
                 }
             }
         });
@@ -118,7 +123,7 @@ public class MainPanel extends JPanel {
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
-                Controller.getInstance().startController();
+                GameController.getInstance().startController();
             }
         };
         t.start();

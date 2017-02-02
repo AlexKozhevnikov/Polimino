@@ -1,6 +1,7 @@
 package com.alexeus.polyominoes.ai;
 
 import com.alexeus.polyominoes.model.Move;
+import com.alexeus.polyominoes.model.TargetLine;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public interface PolyominoPlayer {
     /**
      * Метод задаёт для движка линию-цель, которую нужно пересечь. Полимино должно стремиться сделать это как можно
      * быстрее. Используется в "гонках".
-     * @param x1, y1, x2, y2 координаты линии
+     * @param line целевая линия
      */
-    void setTargetLine(int x1, int y1, int x2, int y2);
+    void setTargetLine(TargetLine line);
 }

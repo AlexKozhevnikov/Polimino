@@ -9,17 +9,17 @@ public class Polyomino {
     /**
      * Количество квадратов, формирующих фигуру
      */
-    int n;
+    private int n;
 
     /**
      * Порядковый номер фигуры из списка всех фигур с заданным n
      */
-    int id;
+    private int id;
 
     /**
      * Название данного полимино
      */
-    String name;
+    private String name;
 
     public Polyomino(int n, int id) {
         this.n = n;
@@ -31,7 +31,7 @@ public class Polyomino {
         return n;
     }
 
-    public int getId() {
+    public int getPolyominoId() {
         return id;
     }
 

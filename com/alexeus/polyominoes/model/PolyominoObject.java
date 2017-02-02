@@ -1,10 +1,10 @@
 package com.alexeus.polyominoes.model;
 
-import com.alexeus.polyominoes.ai.PolyominoPlayer;
+import java.awt.*;
 
 /**
  * Created by alexeus on 02.02.2017.
- * Класс представляет собой движущийся объект полиомино с движком, который им руководит.
+ * Класс представляет собой движущийся объект полиомино.
  */
 public class PolyominoObject {
 
@@ -12,15 +12,15 @@ public class PolyominoObject {
 
     private int[] x, y;
 
-    private PolyominoPlayer player;
+    private Color color;
 
-    public PolyominoObject(int n, int[] x, int[] y, PolyominoPlayer player) {
+    public PolyominoObject(int n, int[] x, int[] y, Color color) {
         this.n = n;
         this.x = new int[n];
         this.y = new int[n];
+        this.color = color;
         System.arraycopy(x, 0, this.x, 0, n);
         System.arraycopy(y, 0, this.y, 0, n);
-        this.player = player;
     }
 
     /**
@@ -56,5 +56,21 @@ public class PolyominoObject {
             }
         }
         return false;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getN() {
+        return n;
+    }
+
+    public int[] getX() {
+        return x;
+    }
+
+    public int[] getY() {
+        return y;
     }
 }

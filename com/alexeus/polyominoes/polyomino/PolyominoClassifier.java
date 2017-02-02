@@ -9,6 +9,8 @@ import java.util.TreeMap;
  */
 public class PolyominoClassifier {
 
+    private static PolyominoClassifier instance = new PolyominoClassifier();
+
     public final static int MAX_POLYOMINO_SIZE = 6;
 
     private ArrayList<ArrayList<Polyomino>> polyominoes;
@@ -34,7 +36,7 @@ public class PolyominoClassifier {
             "Патриарх", "Миномёт", "Епископ", "Мост", "Перископ", "Регулировщик", "Крест", "Флаг", "Шипы", "Скейт",
             "Побеги", "Побочность", "Плюс"}};
 
-    public PolyominoClassifier() {
+    private PolyominoClassifier() {
         polyominoes = new ArrayList<>();
         polyominoForms = new ArrayList<>();
         formForCode = new TreeMap<>();
@@ -42,6 +44,11 @@ public class PolyominoClassifier {
         for (int i = 0; i <= MAX_POLYOMINO_SIZE; i++) {
             generatePolyominoes(i);
         }
+        System.out.println("Полимины сформированы");
+    }
+
+    public static PolyominoClassifier getInstance() {
+        return instance;
     }
 
     private void generatePolyominoes(int n) {
@@ -162,6 +169,31 @@ public class PolyominoClassifier {
             code += 1 << (lineCodeShifts[n][x[i]] + y[i]);
         }
         return code;
+    }
+
+    public PolyominoForm detectForm(int n, int[] x, int[] y) {
+        long code = getCode(n, x, y);
+        return formForCode.containsKey(code) ? formForCode.get(code) : null;
+    }
+
+    public PolyominoForm getForm(int n, int id, int numForm) {
+        return polyominoForms.get(n).get(id).get(numForm);
+    }
+
+    public int getNumPolyominos(int n) {
+        return polyominoes.get(n).size();
+    }
+
+    public int getNumPolyominoForms(int n, int polyominoIndex) {
+        return polyominoForms.get(n).get(polyominoIndex).size();
+    }
+
+    ArrayList<Polyomino> getPolyominoesOfSize(int n) {
+        return polyominoes.get(n);
+    }
+
+    ArrayList<ArrayList<PolyominoForm>> getPolyominoFormsOfSize(int n) {
+        return polyominoForms.get(n);
     }
 
     public void printAllPolyominoes() {
